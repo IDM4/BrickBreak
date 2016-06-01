@@ -90,12 +90,11 @@
         };
         //balle
         this.ball = { 
-            "random": Math.random(),
             "radius":6,
-            "posX": 100,
-            "posY": 300,               
-            "verticalSpeed":4,
-            "horizontalSpeed":4,
+            "posX": 0,
+            "posY": 0,               
+            "verticalSpeed":0,
+            "horizontalSpeed":0,
 
             "collide":function( rect ){
 
@@ -205,12 +204,12 @@
                     }
                 }
                 //identifier la phase de jeu
-                if ( gamePhase == 1 ) {
+                if ( gamePhase === 1 ) {
                     this.posX = game.bar.posX;
                     this.posY = game.bar.posY - game.bar.sizeY - this.radius -1 ;
                     this.horizontalSpeed = ( Math.random() * 4 ) - 2;
                 }
-                else if ( gamePhase == 2 ) {
+                else if ( gamePhase === 2 ) {
                     
                     this.posY += this.verticalSpeed;
                     this.posX += this.horizontalSpeed;
@@ -263,7 +262,7 @@
             "color":[ "red","yellow","green","lightblue","cyan", "pink","magenta","lightgreen" ],
             "draw":function( e ){
                 this.sizeX = oApp.width / dX - iEcart - 0.1;
-                ctx.fillStyle = this.color[ e % 8 ];
+                ctx.fillStyle = this.color[ e % 8 ]; // limite le nombre e via un modulo
                 ctx.fillRect( this.posX - this.sizeX / 2, this.posY - this.sizeY, this.sizeX, this.sizeY );
             },
             "table":function(){
@@ -273,7 +272,7 @@
                     for ( j = 0 ; j < dY ; j++ ) {
                         aBriques[ i ] = new Array()
                         
-                        //aBriques[ i ][ j ] = true;
+                        
                         this.posY = ( 1 + j ) * ( iEcart + this.sizeY );
                         this.posX = iEcart + this.sizeX / 2 +  i * ( iEcart + this.sizeX );
  
